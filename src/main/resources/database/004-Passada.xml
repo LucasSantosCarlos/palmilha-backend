@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	
+	<changeSet id="1-CriaTabelaPassada" author="Lucas Santos Carlos">
+		<comment>Criando a tabela passada</comment>
+		<sql>
+            CREATE TABLE passada
+            (
+                id              BIGSERIAL PRIMARY KEY,
+                sessao_id       BIGINT    NOT NULL REFERENCES sessao (id) ON DELETE CASCADE,
+                idx             INT       NOT NULL,
+                ts_inicio       TIMESTAMP NOT NULL,
+                ts_fim          TIMESTAMP NOT NULL,
+                contato_ms      INT,
+                contato_inicial VARCHAR(12),
+                pico_total      INT,
+                razao_medial    NUMERIC(5, 2)
+            );
+        </sql>
+	</changeSet>
+
+    <changeSet id="2-CriaIndiceTabelaPassada" author="Lucas Santos Carlos">
+        <comment>Criando indice da tabela passada</comment>
+        <sql>
+            CREATE INDEX idx_passada_sessao_idx ON passada(sessao_id, idx);
+        </sql>
+    </changeSet>
+
+	
+</databaseChangeLog>

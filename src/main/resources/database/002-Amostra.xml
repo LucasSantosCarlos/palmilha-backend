@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="1-CriaTabelaAmostra" author="Lucas Santos Carlos">
+        <comment>Criando a tabela amostra</comment>
+        <sql>
+            CREATE TABLE amostra
+            (
+                id        BIGSERIAL PRIMARY KEY,
+                sessao_id BIGINT    NOT NULL REFERENCES sessao (id) ON DELETE CASCADE,
+                ts        TIMESTAMP NOT NULL,
+                s1        INT       NOT NULL CHECK (s1 BETWEEN 0 AND 4095),
+                s2        INT       NOT NULL CHECK (s2 BETWEEN 0 AND 4095),
+                s3        INT       NOT NULL CHECK (s3 BETWEEN 0 AND 4095),
+                s4        INT       NOT NULL CHECK (s4 BETWEEN 0 AND 4095),
+                s5        INT       NOT NULL CHECK (s5 BETWEEN 0 AND 4095),
+                s6        INT       NOT NULL CHECK (s6 BETWEEN 0 AND 4095)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="2-CriaIndiceTabelaAmostra" author="Lucas Santos Carlos">
+        <comment>Criando indice da tabela amostra</comment>
+        <sql>
+            CREATE INDEX idx_amostra_sessao_ts ON amostra(sessao_id, ts);
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>

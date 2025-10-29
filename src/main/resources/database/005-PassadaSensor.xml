@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="1-CriaTabelaPassadaSensor" author="Lucas Santos Carlos">
+        <comment>Criando a tabela passada sensor</comment>
+        <sql>
+            CREATE TABLE passada_sensor
+            (
+                id         BIGSERIAL PRIMARY KEY,
+                passada_id BIGINT   NOT NULL REFERENCES passada (id) ON DELETE CASCADE,
+                sensor_idx SMALLINT NOT NULL CHECK (sensor_idx BETWEEN 1 AND 6),
+                media      NUMERIC(6, 2),
+                pico       INT,
+                integral   BIGINT
+            );
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>

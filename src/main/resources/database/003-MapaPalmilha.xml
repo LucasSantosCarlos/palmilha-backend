@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="1-CriaTabelaMapaPalmilha" author="Lucas Santos Carlos">
+        <comment>Criando a tabela mapa palmilha</comment>
+        <sql>
+            CREATE TABLE mapa_palmilha
+            (
+                id         BIGSERIAL PRIMARY KEY,
+                sessao_id  BIGINT        NOT NULL REFERENCES sessao (id) ON DELETE CASCADE,
+                sensor_idx SMALLINT      NOT NULL CHECK (sensor_idx BETWEEN 1 AND 6),
+                x_norm     NUMERIC(4, 2) NOT NULL CHECK (x_norm BETWEEN 0 AND 1),
+                y_norm     NUMERIC(4, 2) NOT NULL CHECK (y_norm BETWEEN 0 AND 1)
+            );
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>
