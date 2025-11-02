@@ -30,12 +30,12 @@ public class MapaPalmilha {
 	private Sessao sessao;
 
 	@Column(name = "sensor_idx")
-	private Integer sensorIdx;
+	private Short sensorIdx;
 
-	@Column(name = "x_norm")
+	@Column(name = "x_norm", columnDefinition = "NUMERIC(4,2)")
 	private Double posicaoX;
 
-	@Column(name = "y_norm")
+	@Column(name = "y_norm", columnDefinition = "NUMERIC(4,2)")
 	private Double posicaoY;
 
 }

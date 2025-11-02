@@ -30,9 +30,9 @@ public class PassadaSensor {
 	private Passada passada;
 	
 	@Column(name = "sensor_idx")
-	private Integer sensorIdx;
+	private Short sensorIdx;
 
-	@Column(name = "media")
+	@Column(name = "media", columnDefinition = "NUMERIC(6,2)")
 	private Double media;
 	
 	@Column(name = "pico")

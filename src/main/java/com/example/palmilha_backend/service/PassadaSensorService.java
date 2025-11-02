@@ -23,7 +23,7 @@ public class PassadaSensorService {
 	private PassadaSensorRepository passadaSensorRepository;
 
 	public List<PassadaSensorDto> buscarPorPassada(Long idPassada) {
-		return passadaSensorMapper.toDto(passadaSensorRepository.findAllbyPassadaId(idPassada));
+		return passadaSensorMapper.toDto(passadaSensorRepository.findAllByPassadaId(idPassada));
 	}
 	
 	@Transactional

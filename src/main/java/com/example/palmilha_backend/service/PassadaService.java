@@ -30,7 +30,7 @@ public class PassadaService {
 	
 	
 	public List<PassadaDto> buscarPorSessao(Long idSessao){
-		List<PassadaDto> passadas = passadaMapper.toDto(passadaRepository.findAllbySessaoId(idSessao));
+		List<PassadaDto> passadas = passadaMapper.toDto(passadaRepository.findAllBySessaoId(idSessao));
 	
 		for(PassadaDto passada : passadas) {
 			passada.setItens(passadaSensorService.buscarPorPassada(passada.getId()));
@@ -45,6 +45,7 @@ public class PassadaService {
 		List<PassadaDto> passadasSalvas = new ArrayList<PassadaDto>();
 		for(PassadaDto dto : passadasDto) {
 			Passada entity = passadaMapper.toEntity(dto);
+            entity.setSessao(sessao);
 			entity = passadaRepository.save(entity);
 			
 			PassadaDto dtoSalvo = passadaMapper.toDto(entity);
@@ -61,7 +62,7 @@ public class PassadaService {
         if (amostras == null || amostras.isEmpty()) return passadas;
 
         boolean emPasso = false;
-        int limiar = 200; // ajuste conforme sensibilidade do sensor
+        int limiar = 35; // ajuste conforme sensibilidade do sensor
         AmostraDto inicio = null;
 
 
@@ -133,7 +134,7 @@ public class PassadaService {
             int integral = valores.stream().mapToInt(Integer::intValue).sum();
 
             PassadaSensorDto ps = new PassadaSensorDto();
-            ps.setSensorIdx(sensorIdx);
+            ps.setSensorIdx(Short.valueOf(String.valueOf(sensorIdx)));
             ps.setMedia(media);
             ps.setPico(pico);
             ps.setIntegral(integral);

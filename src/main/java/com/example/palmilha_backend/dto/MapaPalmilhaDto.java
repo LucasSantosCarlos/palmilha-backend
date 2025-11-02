@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class MapaPalmilhaDto {
 	private Long id;
 	private SessaoDto sessao;
-	private Integer sensorIdx;
+	private Short sensorIdx;
 	private Double posicaoX;
 	private Double posicaoY;
 

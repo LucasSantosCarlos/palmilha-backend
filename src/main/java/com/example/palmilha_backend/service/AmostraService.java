@@ -22,7 +22,7 @@ public class AmostraService {
 	private AmostraRepository amostraRepository;
 	
 	public List<AmostraDto> buscarPorSessao(Long idSessao){
-		return amostraMapper.toDto(amostraRepository.findAllbySessaoId(idSessao));
+		return amostraMapper.toDto(amostraRepository.findAllBySessaoId(idSessao));
 	}
 	
 	public List<AmostraDto> salvar(List<AmostraDto> amostrasDto, Sessao sessao) {

@@ -8,6 +8,6 @@ import com.example.palmilha_backend.model.PassadaSensor;
 
 public interface PassadaSensorRepository extends JpaRepository<PassadaSensor, Long> {
 
-	List<PassadaSensor> findAllbyPassadaId(Long idPassada);
+	List<PassadaSensor> findAllByPassadaId(Long idPassada);
 
 }

@@ -49,6 +49,6 @@ public class Passada {
 	@Column(name = "pico_total")
 	private Integer picoTotal;
 	
-	@Column(name = "razao_medial")
+	@Column(name = "razao_medial", columnDefinition = "NUMERIC(5,2)")
 	private Double razaoMedial;
 }

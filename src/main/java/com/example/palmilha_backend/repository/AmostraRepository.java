@@ -8,6 +8,6 @@ import com.example.palmilha_backend.model.Amostra;
 
 public interface AmostraRepository extends JpaRepository<Amostra, Long> {
 
-	List<Amostra> findAllbySessaoId(Long idSessao);
+	List<Amostra> findAllBySessaoId(Long idSessao);
 
 }

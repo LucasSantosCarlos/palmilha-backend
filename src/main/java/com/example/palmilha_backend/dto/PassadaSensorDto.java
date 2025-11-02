@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class PassadaSensorDto {
 	private Long id;
 	private PassadaDto passada;
-	private Integer sensorIdx;
+	private Short sensorIdx;
 	private Double media;
 	private Integer pico;
 	private Integer integral;
