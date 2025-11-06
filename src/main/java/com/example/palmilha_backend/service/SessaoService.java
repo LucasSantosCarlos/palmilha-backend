@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.palmilha_backend.dto.SessaoDto;
 import com.example.palmilha_backend.mapper.SessaoMapper;
@@ -26,7 +27,7 @@ public class SessaoService {
 	private PassadaService passadaService;
 	
 	public List<SessaoDto> buscarTodas() {
-		List<SessaoDto> sessoes = sessaoMapper.toDto(sessaoRepository.findAll());
+		List<SessaoDto> sessoes = sessaoMapper.toDto(sessaoRepository.findAllByOrderByIniciadoEmDesc());
 		for(SessaoDto sessao : sessoes) {
 			sessao.setAmostras(amostraService.buscarPorSessao(sessao.getId()));
 			sessao.setPassadas(passadaService.buscarPorSessao(sessao.getId()));
@@ -36,10 +37,12 @@ public class SessaoService {
 	
 	public SessaoDto buscarSessao(Long id) {
 		SessaoDto sessao = sessaoMapper.toDto(sessaoRepository.findById(id).orElseThrow(()-> new RuntimeException("Não encontrado")));
-		
+		sessao.setAmostras(amostraService.buscarPorSessao(sessao.getId()));
+		sessao.setPassadas(passadaService.buscarPorSessao(sessao.getId()));
 		return sessao;
 	}
 	
+	@Transactional
 	public SessaoDto salvar(SessaoDto dados) {
 		Sessao sessao = sessaoMapper.toEntity(dados);
 		sessao = sessaoRepository.save(sessao);
